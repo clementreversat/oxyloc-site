@@ -1,26 +1,37 @@
+'use client';
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-30 bg-white shadow-sm">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="h-16 flex items-center justify-between">
-          {/* Left: logo */}
-          <Link href="/" aria-label="Oxyloc" className="flex items-center">
-            <Image
-              src="/logo1.svg"
-              alt="Oxyloc logo"
-              width={150}   // <— increased from 120 to 150
-              height={40}   // <— proportionally larger
-              priority
-            />
+        <div className="h-20 md:h-20 flex items-center justify-between">
+          {/* Left: logo + tagline */}
+          <Link href="/" aria-label="Oxyloc" className="flex items-center gap-2">
+            <div className="flex flex-col leading-none">
+              <Image
+                src="/logo1.svg"
+                alt="Oxyloc logo"
+                width={150}
+                height={40}
+                priority
+              />
+              <span
+                className="mt-0.5 text-[11px] text-[#024053] leading-[1.1] tracking-normal whitespace-nowrap"
+                style={{ lineHeight: 1.1 }}
+              >
+                en toute sérénité
+              </span>
+            </div>
           </Link>
 
-          {/* Center: navigation */}
-          <nav className="hidden md:flex items-center justify-center gap-30 text-base font-medium text-[#024053]">
-            {/* ↑ gap-16 = more spacing between the 3 titles
-                ↑ text-base = same font size as the button */}
+          {/* Center: desktop nav */}
+          <nav className="hidden md:flex items-center justify-center gap-20 text-base font-medium text-[#024053]">
             <Link href="/services" className="hover:opacity-70 transition-opacity">
               Nos services
             </Link>
@@ -32,19 +43,70 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Right: contact button */}
-          <div className="flex items-center">
-            <Link
+          {/* Right: desktop CTA */}
+          <div className="hidden md:flex items-center">
+            <a
               href="#contact-modal"
-              scroll={false}
               className="inline-flex items-center justify-center rounded-md px-5 py-2.5
-             text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 shadow-sm"
+                         text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 shadow-sm"
             >
               Nous contacter
-            </Link>
+            </a>
           </div>
+
+          {/* Mobile: hamburger */}
+          <button
+            className="md:hidden inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-[#024053]"
+            aria-label="Ouvrir le menu"
+            onClick={() => setOpen(true)}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+            </svg>
+          </button>
         </div>
       </div>
+
+      {/* Mobile sheet */}
+      {open && (
+        <div className="md:hidden fixed inset-0 z-[60] bg-black/40" onClick={() => setOpen(false)}>
+          <div
+            className="ml-auto h-full w-80 bg-white shadow-xl p-6 flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[#024053] font-semibold">Menu</span>
+              <button
+                aria-label="Fermer"
+                className="rounded-md p-1 text-[#024053] hover:bg-gray-100"
+                onClick={() => setOpen(false)}
+              >
+                ✕
+              </button>
+            </div>
+
+            <nav className="mt-6 flex flex-col gap-4 text-[#024053] text-base">
+              <Link href="/services" onClick={() => setOpen(false)} className="hover:opacity-70">
+                Nos services
+              </Link>
+              <Link href="/tarifs" onClick={() => setOpen(false)} className="hover:opacity-70">
+                Tarifs
+              </Link>
+              <Link href="/a-propos" onClick={() => setOpen(false)} className="hover:opacity-70">
+                À propos
+              </Link>
+              <a
+                href="#contact-modal"
+                onClick={() => setOpen(false)}
+                className="mt-2 inline-flex items-center justify-center rounded-md px-5 py-2.5
+                           text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 shadow-sm"
+              >
+                Nous contacter
+              </a>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
