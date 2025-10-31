@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import GAListener from "./ga-listener";
+import CookieBanner from "@/components/cookie-banner"; // ← AJOUT
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-140RV9FP1T";
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID || "tx20lk3kgk";
@@ -15,24 +16,19 @@ export const metadata: Metadata = {
   description: "Gestion locative simple et fiable",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
       <body>
         <Header />
         {children}
         <Footer />
+        <CookieBanner /> {/* ← AJOUT */}
 
-        {/* Track route changes for GA4 */}
         <Suspense fallback={null}>
           <GAListener />
         </Suspense>
 
-        {/* Google Analytics 4 */}
         {isProd && (
           <>
             <Script
@@ -50,7 +46,6 @@ export default function RootLayout({
           </>
         )}
 
-        {/* Microsoft Clarity */}
         {isProd && (
           <Script id="clarity" strategy="afterInteractive">
             {`
@@ -63,10 +58,8 @@ export default function RootLayout({
           </Script>
         )}
 
-        {/* Délégation globale CTA "Nous contacter" */}
         <Script id="contact-delegate" strategy="afterInteractive">
           {`
-            // Clique sur [data-contact-open] ou <a href="#contact-modal"> ouvre le modal
             document.addEventListener('click', function(e) {
               const t = e.target;
               if (!(t instanceof Element)) return;
@@ -79,7 +72,6 @@ export default function RootLayout({
                 }
               }
             });
-            // Arrivée directe avec #contact-modal
             if (location.hash === '#contact-modal') {
               window.dispatchEvent(new Event('open-contact'));
               history.replaceState(null, '', location.pathname + location.search);
