@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./css/style.css";
 import Script from "next/script";
 import GAListener from "./ga-listener";
 
