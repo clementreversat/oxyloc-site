@@ -16,7 +16,7 @@ export default function Header() {
             <Image
               src="/logo1.svg"
               alt="Oxyloc"
-              width={150}
+              width={130}
               height={40}
               priority
             />
