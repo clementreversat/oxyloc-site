@@ -20,7 +20,7 @@ export default function FeaturesPlanet() {
           <div className="bg-white p-3 md:p-6 rounded-xl border border-gray-200 shadow-sm">
             <div className="relative w-full max-w-[880px] mx-auto">
               <Image
-                src="/images/schema.jpg"
+                src="/images/Schema.jpg"
                 alt="Schéma du processus Oxyloc"
                 width={1600}
                 height={1200}
