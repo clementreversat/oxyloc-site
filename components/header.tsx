@@ -3,27 +3,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import ContactModal from "@/components/contact-modal"; // ← ajuste le chemin si besoin
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-30 bg-white shadow-sm">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="h-20 flex items-center justify-between">
-          {/* Left: logo (sans baseline dans le DOM) */}
+          {/* Left: logo */}
           <Link href="/" aria-label="Oxyloc" className="flex items-center">
-            <Image
-              src="/logo1.svg"
-              alt="Oxyloc"
-              width={130}
-              height={40}
-              priority
-              style={{ height: 'auto', width: 'auto', maxWidth: '130px' }}
-            />
+            <Image src="/logo1.svg" alt="Oxyloc" width={130} height={40} priority />
           </Link>
 
-          {/* Center: navigation (desktop) */}
+          {/* Center: nav (desktop) */}
           <nav className="hidden md:flex items-center justify-center gap-20 text-base font-medium text-[#024053]">
             <Link href="/services" className="hover:opacity-70 transition-opacity">Nos services</Link>
             <Link href="/tarifs" className="hover:opacity-70 transition-opacity">Tarifs</Link>
@@ -32,19 +27,20 @@ export default function Header() {
 
           {/* Right: CTA (desktop) */}
           <div className="hidden md:flex items-center">
-            <a
-              href="#contact-modal"
+            <button
+              type="button"
+              onClick={() => setContactOpen(true)}
               className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 shadow-sm"
             >
               Nous contacter
-            </a>
+            </button>
           </div>
 
           {/* Mobile: hamburger */}
           <button
             className="md:hidden inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-[#024053]"
             aria-label="Ouvrir le menu"
-            onClick={() => setOpen(true)}
+            onClick={() => setOpenMenu(true)}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
@@ -54,8 +50,8 @@ export default function Header() {
       </div>
 
       {/* Mobile sheet */}
-      {open && (
-        <div className="md:hidden fixed inset-0 z-[60] bg-black/40" onClick={() => setOpen(false)}>
+      {openMenu && (
+        <div className="md:hidden fixed inset-0 z-[60] bg-black/40" onClick={() => setOpenMenu(false)}>
           <div
             className="ml-auto h-full w-80 bg-white shadow-xl p-6 flex flex-col"
             onClick={(e) => e.stopPropagation()}
@@ -65,27 +61,30 @@ export default function Header() {
               <button
                 aria-label="Fermer"
                 className="rounded-md p-1 text-[#024053] hover:bg-gray-100"
-                onClick={() => setOpen(false)}
+                onClick={() => setOpenMenu(false)}
               >
                 ✕
               </button>
             </div>
 
             <nav className="mt-6 flex flex-col gap-4 text-[#024053] text-base">
-              <Link href="/services" onClick={() => setOpen(false)} className="hover:opacity-70">Nos services</Link>
-              <Link href="/tarifs" onClick={() => setOpen(false)} className="hover:opacity-70">Tarifs</Link>
-              <Link href="/a-propos" onClick={() => setOpen(false)} className="hover:opacity-70">À propos</Link>
-              <a
-                href="#contact-modal"
-                onClick={() => setOpen(false)}
+              <Link href="/services" onClick={() => setOpenMenu(false)} className="hover:opacity-70">Nos services</Link>
+              <Link href="/tarifs" onClick={() => setOpenMenu(false)} className="hover:opacity-70">Tarifs</Link>
+              <Link href="/a-propos" onClick={() => setOpenMenu(false)} className="hover:opacity-70">À propos</Link>
+              <button
+                type="button"
+                onClick={() => { setOpenMenu(false); setContactOpen(true); }}
                 className="mt-2 inline-flex items-center justify-center rounded-md px-5 py-2.5 text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 shadow-sm"
               >
                 Nous contacter
-              </a>
+              </button>
             </nav>
           </div>
         </div>
       )}
+
+      {/* Modal contrôlé */}
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </header>
   );
 }
