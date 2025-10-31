@@ -1,49 +1,50 @@
-import "./css/style.css";
-import { Inter } from "next/font/google";
-import dynamic from "next/dynamic";
+import type { Metadata } from "next";
+import "./globals.css";
+import Script from "next/script";
+import GAListener from "./ga-listener";
 
-import CookieBanner from "../components/cookie-banner";
-import AnalyticsLoader from "../components/analytics-loader";
-import Footer from "../components/footer";
-import ContactModalWrapper from "../components/contact-modal-wrapper";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-140RV9FP1T";
+const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID || "tx20lk3kgk";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-export const metadata = {
-  title: "Oxyloc – Gestion locative clé en main",
-  description:
-    "Solutions simples et durables pour prescripteurs et propriétaires.",
+export const metadata: Metadata = {
+  title: "Oxyloc",
+  description: "Gestion locative simple et fiable",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className="scroll-smooth">
-      <head>
-        {/* ✅ Import Dancing Script font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600&display=swap"
-          rel="stylesheet"
+    <html lang="fr">
+      <body>
+        {/* --- Garde ici ton header, footer, providers, etc. --- */}
+        {children}
+
+        {/* Envoi d’un page_view à chaque changement de route */}
+        <GAListener />
+
+        {/* Google Analytics 4 */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
         />
-      </head>
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}', { page_path: window.location.pathname });
+          `}
+        </Script>
 
-      <body className={`${inter.variable} bg-gray-50 font-inter tracking-tight text-gray-900 antialiased`}>
-        <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
-          {children}
-        </div>
-
-        {/* ✅ Client-only contact modal */}
-        <ContactModalWrapper />
-
-        {/* Footer */}
-        <Footer />
-
-        {/* Cookie banner + analytics */}
-        <CookieBanner />
-        <AnalyticsLoader />
+        {/* Microsoft Clarity */}
+        <Script id="clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${CLARITY_ID}");
+          `}
+        </Script>
       </body>
     </html>
   );
