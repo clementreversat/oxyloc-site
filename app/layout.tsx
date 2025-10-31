@@ -60,23 +60,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Script id="contact-delegate" strategy="afterInteractive">
           {`
-            document.addEventListener('click', function(e) {
-              const t = e.target;
-              if (!(t instanceof Element)) return;
-              const trigger = t.closest('[data-contact-open], a[href="#contact-modal"]');
-              if (trigger) {
-                e.preventDefault();
-                window.dispatchEvent(new Event('open-contact'));
-                if (location.hash === '#contact-modal') {
-                  history.replaceState(null, '', location.pathname + location.search);
-                }
-              }
-            });
-            if (location.hash === '#contact-modal') {
-              window.dispatchEvent(new Event('open-contact'));
-              history.replaceState(null, '', location.pathname + location.search);
-            }
-          `}
+  // Fonction de déclenchement
+  function openContact(e) {
+    const t = e.target;
+    if (!(t instanceof Element)) return;
+    const trigger = t.closest('[data-contact-open], a[href="#contact-modal"]');
+    if (trigger) {
+      e.preventDefault();
+      window.dispatchEvent(new Event('open-contact'));
+      if (location.hash === '#contact-modal') {
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+    }
+  }
+
+  // iOS/Safari: capter pointer + click (fallback)
+  document.addEventListener('pointerup', openContact, { passive: false, capture: true });
+  document.addEventListener('click', openContact, { passive: false, capture: true });
+
+  // Arrivée directe avec #contact-modal
+  if (location.hash === '#contact-modal') {
+    window.dispatchEvent(new Event('open-contact'));
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+`}
         </Script>
       </body>
     </html>
