@@ -37,7 +37,7 @@ export default function LargeTestimonial() {
             {
               quote:
                 "Une gestion exceptionnelle, avec un suivi rigoureux et minutieux.",
-              author: "Yann",
+              author: "Sebastien",
             },
             {
               quote: "Professionnels, rapides et sérieux. Je recommande.",
@@ -58,8 +58,8 @@ export default function LargeTestimonial() {
               <p
                 className="mt-6 text-lg text-[#06B6D4] font-[cursive]"
                 style={{
-                      fontFamily: "'Dancing Script', cursive",
-                      fontWeight: 500,
+                  fontFamily: "'Dancing Script', cursive",
+                  fontWeight: 500,
                 }}
               >
                 {author}
