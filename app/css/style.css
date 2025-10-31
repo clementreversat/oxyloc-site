@@ -3,6 +3,9 @@
 /* Additional styles */
 @import './additional-styles/utility-patterns.css' layer(components);
 @import './additional-styles/theme.css';
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 @plugin "@tailwindcss/forms" {
   strategy: base;
@@ -53,135 +56,171 @@
   --animate-breath: breath;
   --animate-float: float;
   --animate-line: line;
-  --animate-infinite-scroll: infinite-scroll;  
+  --animate-infinite-scroll: infinite-scroll;
 
   @keyframes code-1 {
     0% {
       opacity: 0;
     }
+
     2.5% {
       opacity: 1;
     }
+
     97.5% {
       opacity: 1;
     }
+
     100% {
       opacity: 0;
     }
   }
+
   @keyframes code-2 {
     16.2% {
       opacity: 0;
     }
+
     18.75% {
       opacity: 1;
     }
+
     97.5% {
       opacity: 1;
     }
+
     100% {
       opacity: 0;
     }
   }
+
   @keyframes code-3 {
     32.5% {
       opacity: 0;
     }
+
     35% {
       opacity: 1;
     }
+
     97.5% {
       opacity: 1;
     }
+
     100% {
       opacity: 0;
     }
   }
+
   @keyframes code-4 {
     48.75% {
       opacity: 0;
     }
+
     51.25% {
       opacity: 1;
     }
+
     97.5% {
       opacity: 1;
     }
+
     100% {
       opacity: 0;
     }
   }
+
   @keyframes code-5 {
     65% {
       opacity: 0;
     }
+
     72.5% {
       opacity: 1;
     }
+
     97.5% {
       opacity: 1;
     }
+
     100% {
       opacity: 0;
     }
   }
+
   @keyframes code-6 {
     81.25% {
       opacity: 0;
     }
+
     83.75% {
       opacity: 1;
     }
+
     97.5% {
       opacity: 1;
     }
+
     100% {
       opacity: 0;
     }
   }
+
   @keyframes breath {
+
     0%,
     100% {
       transform: scale(0.95);
     }
+
     50% {
       transform: scale(1.1);
     }
   }
+
   @keyframes float {
+
     0%,
     100% {
       transform: translateY(0);
     }
+
     50% {
       transform: translateY(-5%);
     }
   }
+
   @keyframes line {
+
     0%,
     100% {
       left: 0;
       opacity: 0;
     }
+
     50% {
       left: 100%;
       transform: translateX(-100%);
     }
+
     10%,
     40%,
     60%,
     90% {
       opacity: 0;
     }
+
     25%,
     75% {
       opacity: 1;
     }
   }
+
   @keyframes infinite-scroll {
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(-100%);
     }
@@ -197,6 +236,7 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -204,4 +244,141 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Oxyloc brand palette */
+  --background: #F1F5F9;
+  /* muted background */
+  --foreground: #475569;
+  /* muted foreground text */
+  --card: #FFFFFF;
+  --card-foreground: #024053;
+  /* dark teal for titles */
+  --popover: #FFFFFF;
+  --popover-foreground: #024053;
+
+  /* Primary brand color */
+  --primary: #024053;
+  /* dark teal */
+  --primary-foreground: #FFFFFF;
+
+  /* Accent (buttons, highlights) */
+  --secondary: #06B6D4;
+  /* light cyan */
+  --secondary-foreground: #FFFFFF;
+
+  /* Muted (subtle backgrounds) */
+  --muted: #F1F5F9;
+  --muted-foreground: #475569;
+
+  /* Additional colors */
+  --accent: #06B6D4;
+  --accent-foreground: #024053;
+  --destructive: #DC2626;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #06B6D4;
+  --chart-1: #024053;
+  --chart-2: #06B6D4;
+  --chart-3: #475569;
+  --chart-4: #16A34A;
+  --chart-5: #DC2626;
+
+  /* Sidebar (if used) */
+  --sidebar: #F1F5F9;
+  --sidebar-foreground: #024053;
+  --sidebar-primary: #024053;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #06B6D4;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #06B6D4;
+}
+
+.dark {
+  --background: #024053;
+  --foreground: #FFFFFF;
+  --primary: #06B6D4;
+  --primary-foreground: #FFFFFF;
+  --accent: #06B6D4;
+  --accent-foreground: #024053;
+}
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .btn-oxyloc {
+    @apply inline-flex items-center justify-center rounded-md px-5 py-2.5 text-base font-medium text-white shadow-sm transition;
+    background-color: #06B6D4;
+  }
+
+  .btn-oxyloc:hover {
+    filter: brightness(1.05);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
 }

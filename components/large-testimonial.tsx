@@ -1,48 +1,71 @@
-import Image from "next/image";
-import TestimonialImg from "@/public/images/large-testimonial.jpg";
+import { Briefcase, User, Ruler } from "lucide-react";
 
 export default function LargeTestimonial() {
   return (
-    <section>
-      <div className="mx-auto max-w-2xl px-4 sm:px-6">
-        <div className="py-12 md:py-20">
-          <div className="space-y-3 text-center">
-            <div className="relative inline-flex">
-              <svg
-                className="absolute -left-6 -top-2 -z-10"
-                width={40}
-                height={49}
-                viewBox="0 0 40 49"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+    <section className="py-12 md:py-20 bg-[#F8FAFB]">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 text-center">
+        {/* --- Chiffres clés --- */}
+        <h2 className="text-2xl md:text-3xl font-semibold text-[var(--primary)] mb-10">
+          Nos chiffres clés
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-16">
+          {[
+            { icon: Briefcase, value: "1,5 Mds €", label: "d’actifs gérés" },
+            { icon: User, value: "+1 000", label: "locataires" },
+            { icon: Ruler, value: "+1 000 000 m²", label: "sous gestion" },
+          ].map(({ icon: Icon, value, label }) => (
+            <div key={label} className="flex flex-col items-center">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#06B6D4]/10 mb-4">
+                <Icon className="h-6 w-6 text-[#06B6D4]" />
+              </div>
+              <p className="text-3xl md:text-4xl font-semibold text-[#024053]">
+                {value}
+              </p>
+              <p className="mt-1 text-sm text-[var(--muted-foreground)]">{label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* --- Témoignages --- */}
+        <h3 className="text-2xl font-semibold text-[var(--primary)] mb-8">
+          Ce que disent nos clients
+        </h3>
+
+        <div className="grid md:grid-cols-3 gap-6 text-center">
+          {[
+            {
+              quote:
+                "Une gestion exceptionnelle, avec un suivi rigoureux et minutieux.",
+              author: "Yann",
+            },
+            {
+              quote: "Professionnels, rapides et sérieux. Je recommande.",
+              author: "JC",
+            },
+            {
+              quote: "Oxyloc a tout pris en main, mes clients sont ravis.",
+              author: "Hélène",
+            },
+          ].map(({ quote, author }) => (
+            <div
+              key={author}
+              className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+            >
+              <p className="text-[var(--primary)] leading-relaxed italic">
+                “{quote}”
+              </p>
+              <p
+                className="mt-6 text-lg text-[#06B6D4] font-[cursive]"
+                style={{
+                      fontFamily: "'Dancing Script', cursive",
+                      fontWeight: 500,
+                }}
               >
-                <path
-                  d="M22.7976 -0.000136375L39.9352 23.4746L33.4178 31.7234L13.7686 11.4275L22.7976 -0.000136375ZM9.34947 17.0206L26.4871 40.4953L19.9697 48.7441L0.320491 28.4482L9.34947 17.0206Z"
-                  fill="#D1D5DB"
-                />
-              </svg>
-              <Image
-                className="rounded-full"
-                src={TestimonialImg}
-                width={48}
-                height={48}
-                alt="Large testimonial"
-              />
+                {author}
+              </p>
             </div>
-            <p className="text-2xl font-bold text-gray-900">
-              “Simple has simplified my life in more ways than one. From
-              managing my sites to{" "}
-              <em className="italic text-gray-500">keeping track of tasks</em>,
-              it's become my go-to tool for everything.”
-            </p>
-            <div className="text-sm font-medium text-gray-500">
-              <span className="text-gray-700">Mary Sullivan</span>{" "}
-              <span className="text-gray-400">/</span>{" "}
-              <a className="text-blue-500" href="#0">
-                CTO at Microsoft
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

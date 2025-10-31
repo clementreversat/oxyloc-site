@@ -4,8 +4,10 @@ export const metadata = {
 };
 
 import Hero from "@/components/hero-home";
-import BusinessCategories from "@/components/business-categories";
+import TypesBiens from "@/components/types-biens";
 import FeaturesPlanet from "@/components/features-planet";
+import PourLesPros from "@/components/pour-les-pros";
+import NosEngagements from "@/components/nos-engagements";
 import LargeTestimonial from "@/components/large-testimonial";
 import Cta from "@/components/cta";
 
@@ -13,8 +15,10 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <BusinessCategories />
+      <TypesBiens />
       <FeaturesPlanet />
+      <PourLesPros />
+      <NosEngagements />
       <LargeTestimonial />
       <Cta />
     </>
