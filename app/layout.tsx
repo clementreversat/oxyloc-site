@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./css/style.css";
 import Script from "next/script";
+import { Suspense } from "react";          // ← ajout
 import GAListener from "./ga-listener";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-140RV9FP1T";
@@ -15,11 +16,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <body>
-        {/* --- Garde ici ton header, footer, providers, etc. --- */}
         {children}
 
-        {/* Envoi d’un page_view à chaque changement de route */}
-        <GAListener />
+        {/* GA: renvoi d’un page_view sur chaque changement d’URL */}
+        <Suspense fallback={null}>
+          <GAListener />
+        </Suspense>
 
         {/* Google Analytics 4 */}
         <Script
@@ -42,10 +44,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
               t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
               y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "${CLARITY_ID}");
-          `}
-        </Script>
-      </body>
-    </html>
-  );
-}
