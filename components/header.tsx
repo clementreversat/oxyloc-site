@@ -1,13 +1,20 @@
-'use client';
+"use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import ContactModal from "@/components/contact-modal";
+import ContactModal from "./contact-modal";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+
+  // Ouvre le modal quand l’événement global est émis
+  useEffect(() => {
+    const onOpen = () => setContactOpen(true);
+    window.addEventListener("open-contact", onOpen as EventListener);
+    return () => window.removeEventListener("open-contact", onOpen as EventListener);
+  }, []);
 
   return (
     <header className="sticky top-0 z-30 bg-white shadow-sm">
@@ -15,17 +22,10 @@ export default function Header() {
         <div className="h-20 flex items-center justify-between">
           {/* Left: logo */}
           <Link href="/" aria-label="Oxyloc" className="flex items-center">
-            <Image
-              src="/logo1.svg"
-              alt="Oxyloc"
-              width={130}
-              height={40}
-              priority
-              style={{ height: "auto", width: "auto", maxWidth: "130px" }}
-            />
+            <Image src="/logo1.svg" alt="Oxyloc" width={130} height={40} priority />
           </Link>
 
-          {/* Center: navigation (desktop) */}
+          {/* Center: nav (desktop) */}
           <nav className="hidden md:flex items-center justify-center gap-20 text-base font-medium text-[#024053]">
             <Link href="/services" className="hover:opacity-70 transition-opacity">Nos services</Link>
             <Link href="/tarifs" className="hover:opacity-70 transition-opacity">Tarifs</Link>
@@ -36,10 +36,8 @@ export default function Header() {
           <div className="hidden md:flex items-center">
             <button
               type="button"
-              aria-controls="contact-modal"
-              aria-expanded={contactOpen}
               onClick={() => setContactOpen(true)}
-              className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 shadow-sm"
+              className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 transition shadow-sm cursor-pointer"
             >
               Nous contacter
             </button>
@@ -49,7 +47,6 @@ export default function Header() {
           <button
             className="md:hidden inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-[#024053]"
             aria-label="Ouvrir le menu"
-            aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -83,10 +80,8 @@ export default function Header() {
               <Link href="/a-propos" onClick={() => setMenuOpen(false)} className="hover:opacity-70">À propos</Link>
               <button
                 type="button"
-                aria-controls="contact-modal"
-                aria-expanded={contactOpen}
                 onClick={() => { setMenuOpen(false); setContactOpen(true); }}
-                className="mt-2 inline-flex items-center justify-center rounded-md px-5 py-2.5 text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 shadow-sm"
+                className="mt-2 inline-flex items-center justify-center rounded-md px-5 py-2.5 text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 transition shadow-sm cursor-pointer"
               >
                 Nous contacter
               </button>
@@ -95,12 +90,8 @@ export default function Header() {
         </div>
       )}
 
-      {/* Contact Modal */}
-      <ContactModal
-        id="contact-modal"
-        open={contactOpen}
-        onClose={() => setContactOpen(false)}
-      />
+      {/* Modal contrôlé */}
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </header>
   );
 }
