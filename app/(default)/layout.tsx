@@ -1,11 +1,9 @@
 "use client";
-
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 import Header from "@/components/header";
-// ❌ remove: import Footer from "@/components/footer";
+import Footer from "@/components/footer";  // ✅ Uncomment this
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -16,7 +14,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
     <>
       <Header />
       <main className="grow">{children}</main>
-      {/* ❌ remove this line: <Footer border={true} /> */}
+      <Footer />  {/* ✅ Add this back */}
     </>
   );
 }

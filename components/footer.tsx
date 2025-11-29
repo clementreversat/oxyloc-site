@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 
@@ -6,15 +6,22 @@ export default function Footer() {
   return (
     <footer className="border-t bg-white">
       <div className="mx-auto max-w-6xl px-4 py-6">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 place-items-center gap-4 text-sm text-[var(--color-muted-fg,#475569)]">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--muted-foreground)]">
           <Link href="/faq" className="hover:underline">FAQ</Link>
           <Link href="/tarifs" className="hover:underline">Tarifs</Link>
           <Link href="/a-propos" className="hover:underline">À propos</Link>
           <Link href="/mentions-legales" className="hover:underline">Mentions légales</Link>
-          <a href="#contact-modal" className="hover:underline">Nous contacter</a>
+
+          <button
+            type="button"
+            data-contact-open
+            className="hover:underline cursor-pointer"
+            title="Nous contacter"
+          >
+            Nous contacter
+          </button>
 
           <div className="flex items-center gap-4">
-            {/* socials unchanged */}
             <a href="https://facebook.com" aria-label="Facebook" className="opacity-80 hover:opacity-100" target="_blank" rel="noopener noreferrer">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.49 17.52 2 11.94 2S2 6.49 2 12.06c0 4.99 3.66 9.13 8.44 9.94v-7.03H8.08v-2.91h2.36V9.41c0-2.34 1.39-3.63 3.52-3.63 1.02 0 2.09.18 2.09.18v2.3h-1.18c-1.16 0-1.52.72-1.52 1.46v1.75h2.59l-.41 2.91h-2.18V22c4.78-.81 8.44-4.95 8.44-9.94z" /></svg>
             </a>
@@ -25,7 +32,14 @@ export default function Footer() {
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.55 3H17.9l-5.22 6.9L7.47 3H3l6.5 9.3L3.25 21h2.66l5.65-7.46L16.86 21h4.47l-7-9.91L20.55 3z" /></svg>
             </a>
 
-
+            <button
+              type="button"
+              onClick={() => (window as any).showCookieBanner?.()}
+              className="ml-2 hover:underline cursor-pointer"
+              title="Modifier vos préférences cookies"
+            >
+              Gérer les cookies
+            </button>
           </div>
         </div>
       </div>
