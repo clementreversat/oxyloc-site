@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 
 export default function Hero() {
@@ -8,31 +7,25 @@ export default function Hero() {
       <div className="relative h-[68vh] min-h-[520px] w-full overflow-hidden">
         <Image
           src="/images/hero/hero.jpg"
-          alt="Paris / Versailles — ambiance premium"
+          alt="Versailles et Paris — Gestion locative premium"
           fill
           className="object-cover"
           priority
         />
         <div className="absolute inset-0 bg-black/20" />
 
-        {/* Contenu centré */}
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-center justify-center px-4 text-center">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-semibold text-white">
-              Oxyloc – La gestion en toute sérénité
+        {/* Contenu aligné à droite */}
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-center justify-end px-4">
+          <div className="space-y-8 text-right">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight">
+              Oxyloc, la gestion locative en toute sérénité
             </h1>
-            <p className="mt-4 text-lg md:text-xl text-white italic">
-              Gestion locative premium sur Paris et Versailles
+            <p className="text-xl md:text-2xl text-white uppercase">
+              Gestion locative premium & moderne
             </p>
-            <div className="mt-8 flex justify-center">
-              <Link
-                href="#contact-modal"
-                className="inline-flex items-center justify-center rounded-md px-5 py-2.5
-                text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 shadow-sm"
-              >
-                Nous contacter
-              </Link>
-            </div>
+            <p className="text-xl md:text-2xl text-white uppercase">
+              À Versailles & Paris
+            </p>
           </div>
         </div>
       </div>
