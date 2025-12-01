@@ -7,9 +7,9 @@ export default function Footer() {
   return (
     <footer className="border-t bg-white">
       <div className="mx-auto max-w-6xl px-4 py-6">
-        <div className="flex flex-wrap items-center justify-between gap-6">
-          {/* Left: Partner logos */}
-          <div className="flex items-center gap-6">
+        <div className="flex flex-col md:flex-row md:flex-wrap items-center md:justify-between gap-6">
+          {/* Partner logos - First on mobile */}
+          <div className="flex items-center gap-6 order-1">
             <a
               href="https://www.c-garanties.com/agents-immobiliers-et-administrateurs-de-biens/administrateurs-de-biens-et-agents-immobiliers/"
               target="_blank"
@@ -41,10 +41,14 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Center: Navigation links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--muted-foreground)]">
-            <Link href="/mentions-legales" className="hover:underline">Mentions légales</Link>
-            <Link href="/honoraires" className="hover:underline">Honoraires</Link>
+          {/* Navigation links - Second on mobile */}
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-sm text-[var(--muted-foreground)] order-2">
+            <Link href="/mentions-legales" className="hover:underline">
+              Mentions légales
+            </Link>
+            <Link href="/honoraires" className="hover:underline">
+              Honoraires
+            </Link>
             <button
               type="button"
               data-contact-open
@@ -53,11 +57,13 @@ export default function Footer() {
             >
               Contact
             </button>
-            <Link href="/blog" className="hover:underline">Actualités / Blog</Link>
+            <Link href="/blog" className="hover:underline">
+              Actualités / Blog
+            </Link>
           </div>
 
-          {/* Right: LinkedIn only */}
-          <div className="flex items-center">
+          {/* LinkedIn - Third on mobile */}
+          <div className="flex items-center order-3">
             <a
               href="https://www.linkedin.com/company/linkedin.com-company-immoxygen/posts/?feedView=all"
               aria-label="Immoxygen LinkedIn"
