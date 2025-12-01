@@ -57,7 +57,7 @@ export default function EspacePartenairePage() {
                         </div>
 
                         {/* Right: Benefits - 2 columns x 3 rows */}
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {benefits.map((benefit, i) => (
                                 <div
                                     key={i}

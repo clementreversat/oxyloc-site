@@ -122,18 +122,6 @@ export default function LocationPage() {
                 </div>
             </section>
 
-            {/* Coming Soon Notice */}
-            <section className="py-12 bg-yellow-50 border-y border-yellow-200">
-                <div className="mx-auto max-w-6xl px-4 sm:px-6 text-center">
-                    <div className="inline-flex items-center gap-3 bg-yellow-100 border-2 border-yellow-400 rounded-lg px-6 py-3">
-                        <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse" />
-                        <p className="text-yellow-900 font-medium">
-                            Prévenir en temps réel : 2 une page portail de nos offres de biens disponibles à la location
-                        </p>
-                    </div>
-                </div>
-            </section>
-
             {/* Properties Grid - Placeholder */}
             <section className="py-16">
                 <div className="mx-auto max-w-6xl px-4 sm:px-6">
