@@ -40,9 +40,9 @@ export default function LocationPage() {
     return (
         <main className="bg-white">
             {/* Hero Section with Search */}
-            <section className="relative h-[400px] bg-gradient-to-r from-[#024053] to-[#06B6D4]">
+            <section className="relative min-h-[400px] py-12 bg-gradient-to-r from-[#024053] to-[#06B6D4]">
                 <div className="absolute inset-0 bg-black/20" />
-                <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 h-full flex flex-col items-center justify-center text-white">
+                <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 flex flex-col items-center justify-center text-white">
                     <h1 className="text-4xl md:text-5xl font-semibold mb-4 text-center">
                         Biens en location
                     </h1>
