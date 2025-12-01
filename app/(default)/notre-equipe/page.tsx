@@ -17,17 +17,41 @@ export default function NotreEquipePage() {
                         Une équipe d'investisseurs au service des investisseurs
                     </h1>
 
-                    <div className="grid lg:grid-cols-2 gap-10 items-center">
-                        <div className="rounded-xl overflow-hidden shadow-lg">
-                            <Image
-                                src="/images/notre-equipe/RENT_Assis_zoom.jpg"
-                                alt="L'équipe Oxyloc"
-                                width={800}
-                                height={600}
-                                className="w-full h-auto"
-                            />
+                    <div className="grid lg:grid-cols-2 gap-10 items-start">
+                        {/* Left: Image + LinkedIn buttons */}
+                        <div className="space-y-4">
+                            <div className="rounded-xl overflow-hidden shadow-lg">
+                                <Image
+                                    src="/images/notre-equipe/RENT_Assis_zoom.jpg"
+                                    alt="L'équipe Oxyloc"
+                                    width={800}
+                                    height={600}
+                                    className="w-full h-auto"
+                                />
+                            </div>
+
+                            {/* LinkedIn buttons directly under image */}
+                            <div className="flex justify-between gap-3">
+                                {team.map((member, i) => (
+                                    
+                                        key={i}
+                                        href={member.linkedin}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 px-3 py-2 rounded-full border border-gray-200 bg-white hover:border-[#0A66C2] hover:bg-sky-50 transition-all group flex-1 justify-center"
+                                    >
+                                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0A66C2] text-xs font-bold text-white group-hover:scale-110 transition-transform">
+                                            in
+                                        </span>
+                                        <span className="text-sm font-medium text-[#024053] group-hover:text-[#0A66C2]">
+                                            {member.name}
+                                        </span>
+                                    </a>
+                                ))}
+                            </div>
                         </div>
 
+                        {/* Right: Text content */}
                         <div className="space-y-6">
                             <div>
                                 <p className="font-semibold text-[#024053] mb-2">
@@ -57,26 +81,6 @@ export default function NotreEquipePage() {
                             </div>
                         </div>
                     </div>
-
-                    {/* LinkedIn buttons BELOW the grid */}
-                    <div className="flex justify-center lg:justify-start gap-3 mt-4 lg:max-w-[calc(50%-1.25rem)]">
-                        {team.map((member, i) => (
-                            <a
-                                key={i}
-                                href={member.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white hover:border-[#0A66C2] hover:bg-sky-50 transition-all group flex-1 justify-center"
-                            >
-                                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0A66C2] text-xs font-bold text-white group-hover:scale-110 transition-transform">
-                                    in
-                                </span>
-                                <span className="text-sm font-medium text-[#024053] group-hover:text-[#0A66C2]">
-                                    {member.name}
-                                </span>
-                            </a>
-                        ))}
-                    </div>
                 </div>
             </section>
 
@@ -94,6 +98,6 @@ export default function NotreEquipePage() {
                     </button>
                 </div>
             </section>
-        </main>
+        </main >
     );
 }
