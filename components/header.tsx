@@ -21,7 +21,7 @@ export default function Header() {
         <div className="h-20 flex items-center justify-between py-3">
           {/* Left: logo */}
           <Link href="/" aria-label="Oxyloc" className="flex items-center">
-            <Image src="/logo1.svg" alt="Oxyloc" width={110} height={35} priority />
+            <Image src="/logo1.svg" alt="Oxyloc" width={160} height={50} priority />
           </Link>
 
           {/* Center: nav (desktop) */}

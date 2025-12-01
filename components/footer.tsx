@@ -14,28 +14,29 @@ export default function Footer() {
               href="https://www.c-garanties.com/agents-immobiliers-et-administrateurs-de-biens/administrateurs-de-biens-et-agents-immobiliers/"
               target="_blank"
               rel="noopener noreferrer"
-              className="opacity-80 hover:opacity-100 transition-opacity"
+              className="opacity-80 hover:opacity-100 transition-opacity p-2"
             >
               <Image
                 src="/images/logos/CEGC.png"
-                alt="CEGC"
-                width={120}
-                height={60}
-                className="h-14 w-auto"
+                alt="CEGC - Compagnie Européenne de Garanties et Cautions"
+                width={140}
+                height={140}
+                className="h-16 w-auto"
               />
             </a>
+
             <a
               href="https://www.fnaim.fr/"
               target="_blank"
               rel="noopener noreferrer"
-              className="opacity-80 hover:opacity-100 transition-opacity"
+              className="opacity-80 hover:opacity-100 transition-opacity p-2"
             >
               <Image
                 src="/images/logos/FNAIM.png"
                 alt="FNAIM"
-                width={120}
-                height={60}
-                className="h-14 w-auto"
+                width={140}
+                height={140}
+                className="h-16 w-auto"
               />
             </a>
           </div>

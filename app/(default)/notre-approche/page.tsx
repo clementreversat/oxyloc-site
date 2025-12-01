@@ -47,7 +47,7 @@ function FlipCard({ image, caption, backText }: { image: string; caption: string
                         fill
                         className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-center p-4">
                         <p className="text-white text-sm font-medium text-center">{caption}</p>
                     </div>
                 </div>
