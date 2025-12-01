@@ -102,8 +102,8 @@ export default function NotreApprochePage() {
                     <h2 className="text-2xl md:text-3xl font-semibold text-[#024053] text-center mb-4">
                         Nous croyons avant tout à la Proximité, à la Haute Qualité & au Long Terme
                     </h2>
-                    <p className="text-center text-[var(--muted-foreground)] mb-12 max-w-4xl mx-auto">
-                        Parce que nous sommes d'abord votre conseiller, nous mettons en oeuvre un accompagnement protecteur de vos intérêts afin de vous simplifier au maximum l'administratif, vous libérer d'une charge mentale<br />et vous permettre de vous concentrer sur l'essentiel
+                    <p className="text-center text-[var(--muted-foreground)] mb-12 max-w-5xl mx-auto">
+                        Parce que nous sommes d'abord votre conseiller, nous mettons en oeuvre un accompagnement protecteur de vos intérêts afin de vous simplifier au maximum l'administratif, vous libérer d'une charge mentale et vous permettre de vous concentrer sur l'essentiel
                     </p>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">

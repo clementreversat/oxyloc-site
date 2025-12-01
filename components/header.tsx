@@ -30,7 +30,7 @@ export default function Header() {
             <Link href="/notre-offre" className="hover:opacity-70 transition-opacity">Notre offre</Link>
             <Link href="/vos-appreciations" className="hover:opacity-70 transition-opacity">Vos appréciations</Link>
             <Link href="/notre-equipe" className="hover:opacity-70 transition-opacity">Notre équipe</Link>
-            <Link href="/location" className="hover:opacity-70 transition-opacity uppercase">Location</Link>
+            <Link href="/location" className="hover:opacity-70 transition-opacity">Location</Link>
           </nav>
 
           {/* Right: CTA buttons (desktop) - smaller buttons */}
@@ -44,7 +44,7 @@ export default function Header() {
             </button>
             <Link
               href="/espace-partenaire"
-              className="inline-flex items-center justify-center rounded px-3 py-1 text-xs font-medium text-[#024053] border border-[#024053] hover:bg-[#024053] hover:text-white transition"
+              className="inline-flex items-center justify-center rounded px-3 py-1 text-xs font-medium text-[#024053] bg-[#E0F2FE] hover:bg-[#BAE6FD] transition"
             >
               Espace partenaire
             </Link>
@@ -86,7 +86,7 @@ export default function Header() {
               <Link href="/notre-offre" onClick={() => setMenuOpen(false)} className="hover:opacity-70">Notre offre</Link>
               <Link href="/vos-appreciations" onClick={() => setMenuOpen(false)} className="hover:opacity-70">Vos appréciations</Link>
               <Link href="/notre-equipe" onClick={() => setMenuOpen(false)} className="hover:opacity-70">Notre équipe</Link>
-              <Link href="/location" onClick={() => setMenuOpen(false)} className="hover:opacity-70 uppercase">LOCATION</Link>
+              <Link href="/location" onClick={() => setMenuOpen(false)} className="hover:opacity-70">Location</Link>
 
               <hr className="my-2" />
 
@@ -100,7 +100,7 @@ export default function Header() {
               <Link
                 href="/espace-partenaire"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex items-center justify-center rounded-md px-4 py-2 text-base font-medium text-[#024053] border border-[#024053] hover:bg-[#024053] hover:text-white transition"
+                className="inline-flex items-center justify-center rounded-md px-4 py-2 text-base font-medium text-[#024053] bg-[#E0F2FE] hover:bg-[#BAE6FD] transition"
               >
                 Espace partenaire
               </Link>
