@@ -33,7 +33,7 @@ export default function NotreEquipePage() {
                             {/* LinkedIn buttons directly under image */}
                             <div className="flex justify-between gap-3">
                                 {team.map((member, i) => (
-                                    
+                                    <a
                                         key={i}
                                         href={member.linkedin}
                                         target="_blank"
@@ -91,7 +91,7 @@ export default function NotreEquipePage() {
                     </h2>
                     <button
                         type="button"
-                        onClick={() => window.dispatchEvent(new Event('open-contact'))}
+                        data-contact-open
                         className="inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium text-white bg-[#06B6D4] hover:brightness-105 shadow-sm transition cursor-pointer"
                     >
                         Nous contacter
