@@ -47,7 +47,7 @@ function FlipCard({ image, caption, backText }: { image: string; caption: string
                         fill
                         className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-center p-4">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end justify-center pb-4 px-4">
                         <p className="text-white text-sm font-medium text-center">{caption}</p>
                     </div>
                 </div>
@@ -97,13 +97,13 @@ export default function NotreApprochePage() {
             </section>
 
             {/* Section 2: Proximité, Haute Qualité & Long Terme */}
-            <section className="py-16 md:py-24 bg-[#F8FAFB]">
+            <section className="py-16 md:py-24 bg-gradient-to-br from-[#E0F2FE] to-[#F0F9FF]">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6">
                     <h2 className="text-2xl md:text-3xl font-semibold text-[#024053] text-center mb-4">
                         Nous croyons avant tout à la Proximité, à la Haute Qualité & au Long Terme
                     </h2>
                     <p className="text-center text-[var(--muted-foreground)] mb-12 max-w-4xl mx-auto">
-                        Parce que nous sommes d'abord votre conseiller, nous mettons en oeuvre un accompagnement protecteur de vos intérêts afin de vous simplifier au maximum l'administratif, vous libérer d'une charge mentale et vous permettre de vous concentrer sur l'essentiel
+                        Parce que nous sommes d'abord votre conseiller, nous mettons en oeuvre un accompagnement protecteur de vos intérêts afin de vous simplifier au maximum l'administratif, vous libérer d'une charge mentale<br />et vous permettre de vous concentrer sur l'essentiel
                     </p>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -177,7 +177,7 @@ export default function NotreApprochePage() {
             </section>
 
             {/* Section 4: Optimiser temps et rentabilité */}
-            <section className="py-16 md:py-24 bg-[#F8FAFB]">
+            <section className="py-16 md:py-24 bg-gradient-to-br from-[#E0F2FE] to-[#F0F9FF]">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6">
                     <h2 className="text-2xl md:text-3xl font-semibold text-[#024053] text-center mb-4">
                         Notre engagement à vos côtés optimise votre temps et la rentabilité de vos actifs
