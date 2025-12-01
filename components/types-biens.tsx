@@ -15,10 +15,10 @@ export default function TypesBiens() {
           Nous gérons vos immeubles, vos appartements, vos chambres à louer et vos locaux
         </h2>
 
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {biens.map((b, i) => (
             <div key={i} className="overflow-hidden rounded-xl shadow-sm">
-              <div className="relative h-56">
+              <div className="relative h-40 md:h-56">
                 <Image
                   src={b.image}
                   alt={b.alt}
