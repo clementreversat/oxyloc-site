@@ -3,10 +3,8 @@
 import { useEffect } from 'react';
 
 const STORAGE_KEY = 'oxyloc-consent';
-
-// TODO: ⬇️ remplace par tes vrais IDs
-const GA_ID = 'G-XXXXXXX';      // ex: G-ABCDEF1234
-const CLARITY_ID = 'xxxxxx';    // ex: o1a2b3c4d5
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-140RV9FP1T';
+const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID || 'tx20lk3kgk';
 
 function loadGoogleAnalytics(id: string) {
   if (!id || id === 'G-XXXXXXX') return;

@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import "./css/style.css";
 import Script from "next/script";
 import { Suspense } from "react";
-import GAListener from "./ga-listener";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 import CookieBanner from "@/components/cookie-banner";
-
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-140RV9FP1T";
-const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID || "tx20lk3kgk";
-const isProd = process.env.VERCEL_ENV === "production";
+import AnalyticsLoader from "@/components/analytics-loader";
 
 export const metadata: Metadata = {
   title: "Oxyloc",
@@ -18,44 +16,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <body>
+        <Header />
         {children}
+        <Footer />
         <CookieBanner />
-
+        
+        {/* Analytics loader - only loads after user consent */}
         <Suspense fallback={null}>
-          <GAListener />
+          <AnalyticsLoader />
         </Suspense>
-
-        {isProd && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', { page_path: window.location.pathname });
-              `}
-            </Script>
-          </>
-        )}
-
-        {isProd && (
-          <Script id="clarity" strategy="afterInteractive">
-            {`
-              (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "${CLARITY_ID}");
-            `}
-          </Script>
-        )}
 
         <Script id="contact-delegate" strategy="afterInteractive">
           {`
+  // Fonction de déclenchement
   function openContact(e) {
     const t = e.target;
     if (!(t instanceof Element)) return;
@@ -69,9 +42,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     }
   }
 
+  // iOS/Safari: capter pointer + click (fallback)
   document.addEventListener('pointerup', openContact, { passive: false, capture: true });
   document.addEventListener('click', openContact, { passive: false, capture: true });
 
+  // Arrivée directe avec #contact-modal
   if (location.hash === '#contact-modal') {
     window.dispatchEvent(new Event('open-contact'));
     history.replaceState(null, '', location.pathname + location.search);
