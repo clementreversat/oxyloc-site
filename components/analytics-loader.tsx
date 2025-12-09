@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 const STORAGE_KEY = 'oxyloc-consent';
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-140RV9FP1T';
@@ -41,11 +42,29 @@ function loadClarity(projectId: string) {
     t.async = 1;
     t.src = 'https://www.clarity.ms/tag/' + i;
     y = l.getElementsByTagName(r)[0];
-    y.parentNode.insertBefore(t, y);
+    y.parentNode?.insertBefore(t, y);  // Added optional chaining
   })(window, document, 'clarity', 'script', projectId);
 }
 
+function useGAPageviews() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!(window as any).gtag) return;
+
+    const url = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
+    (window as any).gtag('config', GA_ID, {
+      page_path: url,
+    });
+  }, [pathname, searchParams]);
+}
+
 export default function AnalyticsLoader() {
+  // Track page views on route changes
+  useGAPageviews();
+
   useEffect(() => {
     function maybeLoad() {
       const c = localStorage.getItem(STORAGE_KEY);
@@ -57,16 +76,20 @@ export default function AnalyticsLoader() {
       loadClarity(CLARITY_ID);
     }
 
-    // initial
+    // initial load
     try {
       maybeLoad();
-    } catch { }
+    } catch (error) {
+      console.warn('Failed to load analytics:', error);
+    }
 
     // re-run when consent changes
     const onChange = () => {
       try {
         maybeLoad();
-      } catch { }
+      } catch (error) {
+        console.warn('Failed to reload analytics:', error);
+      }
     };
     window.addEventListener('oxyloc-consent-changed', onChange);
     return () => window.removeEventListener('oxyloc-consent-changed', onChange);
