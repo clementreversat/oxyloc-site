@@ -25,7 +25,18 @@ function loadGoogleAnalytics(id: string) {
   }
   (window as any).gtag = gtag;
   gtag('js', new Date());
-  gtag('config', id, { anonymize_ip: true });
+
+  // Initial config with send_page_view: false (we'll send manually)
+  gtag('config', id, {
+    anonymize_ip: true,
+    send_page_view: false,
+  });
+
+  // Send initial page view
+  gtag('event', 'page_view', {
+    page_path: window.location.pathname + window.location.search,
+    page_title: document.title,
+  });
 }
 
 function loadClarity(projectId: string) {
@@ -42,7 +53,7 @@ function loadClarity(projectId: string) {
     t.async = 1;
     t.src = 'https://www.clarity.ms/tag/' + i;
     y = l.getElementsByTagName(r)[0];
-    y.parentNode?.insertBefore(t, y);  // Added optional chaining
+    y.parentNode?.insertBefore(t, y);
   })(window, document, 'clarity', 'script', projectId);
 }
 
@@ -55,8 +66,11 @@ function useGAPageviews() {
     if (!(window as any).gtag) return;
 
     const url = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
-    (window as any).gtag('config', GA_ID, {
+
+    // Send page_view event (not config!)
+    (window as any).gtag('event', 'page_view', {
       page_path: url,
+      page_title: document.title,
     });
   }, [pathname, searchParams]);
 }
