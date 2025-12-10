@@ -20,7 +20,7 @@ export default function NotreOffrePage() {
                     <div className="grid md:grid-cols-2 gap-10 items-center">
                         <div>
                             <h2 className="text-2xl md:text-3xl font-semibold text-[#16A34A] mb-6">
-                                "Le temps c'est de l'argent"
+                                "Le temps, c'est de l'argent"
                             </h2>
 
                             <div className="space-y-4">

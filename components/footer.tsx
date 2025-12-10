@@ -62,14 +62,9 @@ export default function Footer() {
             <Link href="/honoraires" className="hover:underline">
               Honoraires
             </Link>
-            <button
-              type="button"
-              data-contact-open
-              className="hover:underline cursor-pointer"
-              title="Contact"
-            >
+            <Link href="/contact" className="hover:underline">
               Contact
-            </button>
+            </Link>
             <Link href="/blog" className="hover:underline whitespace-nowrap">
               Actualités / Blog
             </Link>
@@ -119,14 +114,9 @@ export default function Footer() {
             <Link href="/honoraires" className="hover:underline">
               Honoraires
             </Link>
-            <button
-              type="button"
-              data-contact-open
-              className="hover:underline cursor-pointer"
-              title="Contact"
-            >
+            <Link href="/contact" className="hover:underline">
               Contact
-            </button>
+            </Link>
             <Link href="/blog" className="hover:underline whitespace-nowrap">
               Actualités / Blog
             </Link>

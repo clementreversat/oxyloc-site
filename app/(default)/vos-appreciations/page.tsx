@@ -19,10 +19,34 @@ export default function VosAppreciationsPage() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 text-center">
-          <div className="mb-8">
-            <a href="https://www.google.com/maps/place/Oxyloc/@48.8105563,2.1269208,17z/data=!4m18!1m9!3m8!1s0x47e67d0380903491:0xc51fdffe558ddca1!2sOxyloc!8m2!3d48.8105563!4d2.1294957!9m1!1b1!16s%2Fg%2F11yp8x1_hp!3m7!1s0x47e67d0380903491:0xc51fdffe558ddca1!8m2!3d48.8105563!4d2.1294957!9m1!1b1!16s%2Fg%2F11yp8x1_hp?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition">
-              <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-              <span>Vous êtes satisfait ? Laissez-nous un avis sur Google</span>
+          {/* Google Review Rating */}
+          <div className="mb-8 inline-flex flex-col items-center gap-3 bg-white/90 backdrop-blur-sm rounded-xl px-8 py-6 shadow-lg">
+            <div className="flex items-center gap-3">
+              {/* Stars */}
+              <div className="flex gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <svg
+                    key={star}
+                    className="w-6 h-6 fill-yellow-400 text-yellow-400"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                ))}
+              </div>
+              <span className="text-2xl font-bold text-[#024053]">5.0</span>
+            </div>
+
+            <a
+              href="https://www.google.com/maps/place/Oxyloc/@48.8105563,2.1269208,17z/data=!4m18!1m9!3m8!1s0x47e67d0380903491:0xc51fdffe558ddca1!2sOxyloc!8m2!3d48.8105563!4d2.1294957!9m1!1b1!16s%2Fg%2F11yp8x1_hp!3m7!1s0x47e67d0380903491:0xc51fdffe558ddca1!8m2!3d48.8105563!4d2.1294957!9m1!1b1!16s%2Fg%2F11yp8x1_hp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition"
+            >
+              <span>Voir tous les avis sur Google</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
             </a>
           </div>
 
@@ -31,7 +55,11 @@ export default function VosAppreciationsPage() {
           </h1>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((item, i) => (
+            {[
+              { quote: "Une gestion exceptionnelle, avec un suivi rigoureux et minutieux.", author: "Sebastien" },
+              { quote: "Professionnels, rapides et sérieux. Je recommande.", author: "JC" },
+              { quote: "Oxyloc a tout pris en main, mes clients sont ravis", author: "Hélène" }
+            ].map((item, i) => (
               <div key={i} className="bg-white rounded-xl border border-gray-200 p-6 shadow-lg hover:shadow-xl transition-shadow">
                 <p className="text-gray-900 text-base leading-relaxed italic mb-4">"{item.quote}"</p>
                 <p className="text-cyan-500 font-medium">{item.author}</p>
