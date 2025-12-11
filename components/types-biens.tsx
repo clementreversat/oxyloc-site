@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function TypesBiens() {
   const biens = [
-    { image: "/images/biens/immeuble.jpg", alt: "Immeubles" },
-    { image: "/images/biens/appartement.jpg", alt: "Appartements" },
-    { image: "/images/biens/chambre.jpg", alt: "Chambres à louer" },
-    { image: "/images/biens/local.jpg", alt: "Locaux commerciaux" },
+    { image: "/images/biens/immeuble.png", alt: "Immeubles" },
+    { image: "/images/biens/appartement.png", alt: "Appartements" },
+    { image: "/images/biens/chambre.png", alt: "Chambres à louer" },
+    { image: "/images/biens/local.png", alt: "Locaux commerciaux" },
   ];
 
   return (

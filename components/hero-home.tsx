@@ -6,7 +6,7 @@ export default function Hero() {
       {/* Image de fond */}
       <div className="relative h-[68vh] min-h-[520px] w-full overflow-hidden">
         <Image
-          src="/images/hero/hero.jpg"
+          src="/images/hero/hero.png"
           alt="Versailles et Paris — Gestion locative premium"
           fill
           className="object-cover"
@@ -20,10 +20,10 @@ export default function Hero() {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight">
               Oxyloc, la gestion locative en toute sérénité
             </h1>
-            <p className="text-xl md:text-2xl text-white uppercase">
+            <p className="text-xl md:text-2xl lg:text-3xl text-white uppercase">
               Gestion locative premium & moderne
             </p>
-            <p className="text-xl md:text-2xl text-white uppercase">
+            <p className="text-xl md:text-2xl lg:text-3xl text-white uppercase">
               À Versailles & Paris
             </p>
           </div>
