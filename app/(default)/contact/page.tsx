@@ -24,7 +24,7 @@ export default function ContactPage() {
                         <div className="space-y-3">
                             <h2 className="text-xl font-semibold text-[#024053]">Adresse</h2>
                             <p className="text-[var(--muted-foreground)] leading-relaxed">
-                                21, rue d'Angiviller<br />
+                                22, rue d'Angiviller<br />
                                 78000 Versailles<br />
                                 France
                             </p>
