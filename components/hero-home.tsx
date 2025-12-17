@@ -24,7 +24,7 @@ export default function Hero() {
               Gestion locative premium & moderne
             </p>
             <p className="text-xl md:text-2xl lg:text-3xl text-white uppercase">
-              À Versailles & Paris & Clermont Ferrand
+              À Versailles & Paris
             </p>
           </div>
         </div>
