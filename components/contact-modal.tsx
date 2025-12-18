@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   id?: string;
@@ -9,13 +9,51 @@ type Props = {
 };
 
 export default function ContactModal({ id = "contact-modal", open, onClose }: Props) {
-  // Close on ESC
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
+
+  // Reset status when modal closes
+  useEffect(() => {
+    if (!open) {
+      setTimeout(() => setStatus("idle"), 300);
+    }
+  }, [open]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mbdrjlqo", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        form.reset();
+        setTimeout(() => {
+          onClose();
+        }, 2000);
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      setStatus("error");
+    }
+  };
 
   if (!open) return null;
 
@@ -45,61 +83,135 @@ export default function ContactModal({ id = "contact-modal", open, onClose }: Pr
           </button>
         </div>
 
-        <form
-          className="mt-4 space-y-3"
-          action="mailto:contact@oxyloc.fr"
-          method="POST"
-          encType="text/plain"
-          onSubmit={(e) => {
-            // Optionnel : Ajout d'une confirmation
-            if (!window.confirm('Voulez-vous envoyer ce message ?')) {
-              e.preventDefault();
-            }
-          }}
-        >
+        <form className="mt-4 space-y-3" onSubmit={handleSubmit}>
+          {/* Prénom */}
           <div>
-            <label htmlFor="name" className="block text-sm mb-1">Nom</label>
+            <label htmlFor="prenom" className="block text-sm font-medium mb-1">
+              Prénom <span className="text-red-500">*</span>
+            </label>
             <input
-              id="name"
-              name="name"
+              id="prenom"
+              name="prenom"
+              type="text"
               required
-              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              disabled={status === "submitting"}
+              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent disabled:bg-gray-100"
             />
           </div>
+
+          {/* Nom */}
           <div>
-            <label htmlFor="email" className="block text-sm mb-1">Email</label>
+            <label htmlFor="nom" className="block text-sm font-medium mb-1">
+              Nom <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="nom"
+              name="nom"
+              type="text"
+              required
+              disabled={status === "submitting"}
+              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent disabled:bg-gray-100"
+            />
+          </div>
+
+          {/* Email */}
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-1">
+              Email <span className="text-red-500">*</span>
+            </label>
             <input
               id="email"
               name="email"
               type="email"
               required
-              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              disabled={status === "submitting"}
+              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent disabled:bg-gray-100"
             />
           </div>
+
+          {/* Téléphone (optionnel) */}
           <div>
-            <label htmlFor="message" className="block text-sm mb-1">Message</label>
+            <label htmlFor="telephone" className="block text-sm font-medium mb-1">
+              Téléphone <span className="text-gray-400 text-xs">(optionnel)</span>
+            </label>
+            <input
+              id="telephone"
+              name="telephone"
+              type="tel"
+              disabled={status === "submitting"}
+              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent disabled:bg-gray-100"
+            />
+          </div>
+
+          {/* Type de demande */}
+          <div>
+            <label htmlFor="type" className="block text-sm font-medium mb-1">
+              Type de demande <span className="text-red-500">*</span>
+            </label>
+            <select
+              id="type"
+              name="type"
+              required
+              disabled={status === "submitting"}
+              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent disabled:bg-gray-100"
+            >
+              <option value="">Sélectionnez...</option>
+              <option value="proprietaire">Je suis propriétaire</option>
+              <option value="partenaire">Je suis professionnel / partenaire</option>
+              <option value="locataire">Je cherche un logement</option>
+              <option value="autre">Autre demande</option>
+            </select>
+          </div>
+
+          {/* Message */}
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium mb-1">
+              Message <span className="text-red-500">*</span>
+            </label>
             <textarea
               id="message"
               name="message"
               rows={4}
               required
-              className="w-full rounded-md border border-gray-300 px-3 py-2"
+              disabled={status === "submitting"}
+              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-[#06B6D4] focus:border-transparent disabled:bg-gray-100"
             />
           </div>
 
+          {/* Success Message */}
+          {status === "success" && (
+            <div className="rounded-md bg-green-50 border border-green-200 p-3">
+              <p className="text-sm text-green-800">
+                ✅ Message envoyé avec succès! Nous vous répondrons rapidement.
+              </p>
+            </div>
+          )}
+
+          {/* Error Message */}
+          {status === "error" && (
+            <div className="rounded-md bg-red-50 border border-red-200 p-3">
+              <p className="text-sm text-red-800">
+                ❌ Erreur lors de l'envoi. Veuillez réessayer ou nous contacter directement à contact@oxyloc.fr
+              </p>
+            </div>
+          )}
+
+          {/* Buttons */}
           <div className="pt-2 flex justify-end gap-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-md border border-gray-300"
+              disabled={status === "submitting"}
+              className="px-4 py-2 rounded-md border border-gray-300 hover:bg-gray-50 disabled:opacity-50"
             >
               Annuler
             </button>
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-md text-white bg-[#06B6D4] hover:brightness-105 shadow-sm"
+              disabled={status === "submitting"}
+              className="px-5 py-2.5 rounded-md text-white bg-[#06B6D4] hover:brightness-105 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Envoyer
+              {status === "submitting" ? "Envoi en cours..." : "Envoyer"}
             </button>
           </div>
         </form>

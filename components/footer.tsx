@@ -22,7 +22,7 @@ export default function Footer() {
                 alt="CEGC - Compagnie Européenne de Garanties et Cautions"
                 width={140}
                 height={140}
-                className="h-16 w-auto"
+                className="h-20 w-auto"
               />
             </a>
 
@@ -37,7 +37,7 @@ export default function Footer() {
                 alt="FNAIM"
                 width={140}
                 height={140}
-                className="h-16 w-auto"
+                className="h-20 w-auto"
               />
             </a>
 
@@ -48,14 +48,14 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7 0h3.84v2.05h.06c.54-1.03 1.86-2.12 3.83-2.12 4.09 0 4.85 2.69 4.85 6.19V23h-4v-6.64c0-1.58-.03-3.62-2.21-3.62-2.22 0-2.56 1.73-2.56 3.51V23h-4V8z" />
               </svg>
             </a>
           </div>
 
           {/* Row 2: Navigation links */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-[var(--muted-foreground)]">
+          <div className="flex flex-wrap items-center justify-center gap-8 text-base text-[var(--muted-foreground)]">
             <Link href="/mentions-legales" className="hover:underline">
               Mentions légales
             </Link>
@@ -86,7 +86,7 @@ export default function Footer() {
                 alt="CEGC - Compagnie Européenne de Garanties et Cautions"
                 width={140}
                 height={140}
-                className="h-16 w-auto"
+                className="h-24 w-auto"
               />
             </a>
 
@@ -101,13 +101,13 @@ export default function Footer() {
                 alt="FNAIM"
                 width={140}
                 height={140}
-                className="h-16 w-auto"
+                className="h-24 w-auto"
               />
             </a>
           </div>
 
           {/* Center: Navigation links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--muted-foreground)]">
+          <div className="flex flex-wrap items-center justify-center gap-14 text-base text-[var(--muted-foreground)]">
             <Link href="/mentions-legales" className="hover:underline">
               Mentions légales
             </Link>
@@ -130,7 +130,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
               <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7 0h3.84v2.05h.06c.54-1.03 1.86-2.12 3.83-2.12 4.09 0 4.85 2.69 4.85 6.19V23h-4v-6.64c0-1.58-.03-3.62-2.21-3.62-2.22 0-2.56 1.73-2.56 3.51V23h-4V8z" />
             </svg>
           </a>

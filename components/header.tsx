@@ -35,12 +35,14 @@ export default function Header() {
           </Link>
 
           {/* Center: nav (desktop) */}
-          <nav className="hidden lg:flex items-center justify-center gap-8 text-sm font-medium text-[#024053]">
+          <nav className="hidden lg:flex items-center justify-center gap-8 text-base font-medium text-[#024053]">
             <Link href="/notre-approche" className="hover:opacity-70 transition-opacity">Notre approche</Link>
             <Link href="/notre-offre" className="hover:opacity-70 transition-opacity">Notre offre</Link>
             <Link href="/vos-appreciations" className="hover:opacity-70 transition-opacity">Vos appréciations</Link>
             <Link href="/notre-equipe" className="hover:opacity-70 transition-opacity">Notre équipe</Link>
-            <Link href="/nos-locations" className="hover:opacity-70 transition-opacity">Nos Locations</Link>
+            {/* Temporairement caché:
+<Link href="/location" className="hover:opacity-70 transition-opacity">Location</Link>
+*/}
           </nav>
 
           {/* Right: CTA buttons (desktop) */}
