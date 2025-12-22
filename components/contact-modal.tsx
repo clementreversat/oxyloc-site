@@ -8,8 +8,14 @@ type Props = {
   onClose: () => void;
 };
 
-export default function ContactModal({ id = "contact-modal", open, onClose }: Props) {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+export default function ContactModal({
+  id = "contact-modal",
+  open,
+  onClose,
+}: Props) {
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
 
   useEffect(() => {
     if (!open) return;
@@ -71,7 +77,10 @@ export default function ContactModal({ id = "contact-modal", open, onClose }: Pr
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between">
-          <h3 id={`${id}-title`} className="text-xl font-semibold text-[var(--primary)]">
+          <h3
+            id={`${id}-title`}
+            className="text-xl font-semibold text-[var(--primary)]"
+          >
             Nous contacter
           </h3>
           <button
@@ -131,8 +140,12 @@ export default function ContactModal({ id = "contact-modal", open, onClose }: Pr
 
           {/* Téléphone (optionnel) */}
           <div>
-            <label htmlFor="telephone" className="block text-sm font-medium mb-1">
-              Téléphone <span className="text-gray-400 text-xs">(optionnel)</span>
+            <label
+              htmlFor="telephone"
+              className="block text-sm font-medium mb-1"
+            >
+              Téléphone{" "}
+              <span className="text-gray-400 text-xs">(optionnel)</span>
             </label>
             <input
               id="telephone"
@@ -157,7 +170,9 @@ export default function ContactModal({ id = "contact-modal", open, onClose }: Pr
             >
               <option value="">Sélectionnez...</option>
               <option value="proprietaire">Je suis propriétaire</option>
-              <option value="partenaire">Je suis professionnel / partenaire</option>
+              <option value="partenaire">
+                Je suis professionnel / partenaire
+              </option>
               <option value="locataire">Je cherche un logement</option>
               <option value="autre">Autre demande</option>
             </select>
@@ -191,7 +206,8 @@ export default function ContactModal({ id = "contact-modal", open, onClose }: Pr
           {status === "error" && (
             <div className="rounded-md bg-red-50 border border-red-200 p-3">
               <p className="text-sm text-red-800">
-                ❌ Erreur lors de l'envoi. Veuillez réessayer ou nous contacter directement à contact@oxyloc.fr
+                ❌ Erreur lors de l'envoi. Veuillez réessayer ou nous contacter
+                directement à contact@oxyloc.fr
               </p>
             </div>
           )}

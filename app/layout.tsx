@@ -12,7 +12,11 @@ export const metadata: Metadata = {
   description: "Gestion locative simple et fiable",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="fr">
       <body>
@@ -20,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Footer />
         <CookieBanner />
-        
+
         {/* Analytics loader - only loads after user consent */}
         <Suspense fallback={null}>
           <AnalyticsLoader />

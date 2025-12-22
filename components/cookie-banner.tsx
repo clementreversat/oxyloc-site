@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-const STORAGE_KEY = 'oxyloc-consent'; // 'accepted' | 'rejected'
+const STORAGE_KEY = "oxyloc-consent"; // 'accepted' | 'rejected'
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const v = typeof window !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null;
+    const v =
+      typeof window !== "undefined" ? localStorage.getItem(STORAGE_KEY) : null;
     if (!v) setVisible(true);
 
     // Small API to reopen from anywhere (footer link, etc.)
@@ -16,15 +17,15 @@ export default function CookieBanner() {
   }, []);
 
   function accept() {
-    localStorage.setItem(STORAGE_KEY, 'accepted');
+    localStorage.setItem(STORAGE_KEY, "accepted");
     setVisible(false);
-    window.dispatchEvent(new Event('oxyloc-consent-changed'));
+    window.dispatchEvent(new Event("oxyloc-consent-changed"));
   }
 
   function reject() {
-    localStorage.setItem(STORAGE_KEY, 'rejected');
+    localStorage.setItem(STORAGE_KEY, "rejected");
     setVisible(false);
-    window.dispatchEvent(new Event('oxyloc-consent-changed'));
+    window.dispatchEvent(new Event("oxyloc-consent-changed"));
   }
 
   if (!visible) return null;
@@ -34,9 +35,9 @@ export default function CookieBanner() {
       <div className="mx-auto max-w-6xl px-4 pb-4">
         <div className="rounded-xl border border-gray-200 bg-white/95 p-4 shadow-lg backdrop-blur">
           <p className="text-sm text-gray-700">
-            Nous utilisons des cookies de mesure d’audience (Google Analytics) et d’expérience
-            utilisateur (Microsoft Clarity). Vous pouvez accepter ou refuser. Vous pourrez changer
-            d’avis plus tard.
+            Nous utilisons des cookies de mesure d’audience (Google Analytics)
+            et d’expérience utilisateur (Microsoft Clarity). Vous pouvez
+            accepter ou refuser. Vous pourrez changer d’avis plus tard.
           </p>
           <div className="mt-3 flex items-center gap-2">
             <button

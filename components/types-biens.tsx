@@ -12,7 +12,8 @@ export default function TypesBiens() {
     <section className="py-12 md:py-16 bg-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <h2 className="text-2xl md:text-3xl font-semibold text-[var(--primary)] text-center mb-10">
-          Nous gérons vos immeubles, vos appartements, vos chambres à louer et vos locaux
+          Nous gérons vos immeubles, vos appartements, vos chambres à louer et
+          vos locaux
         </h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
