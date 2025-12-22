@@ -9,7 +9,6 @@ export function middleware(req: NextRequest) {
     host === "oxyloc.fr" ||
     host === "www.oxyloc.fr";
 
-  // Laisse passer les assets Next, API, favicon, etc.
   const isSystemPath =
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
@@ -17,11 +16,12 @@ export function middleware(req: NextRequest) {
     pathname === "/robots.txt" ||
     pathname === "/sitemap.xml";
 
-  // Page standby accessible seulement sur le domaine custom
+  // IMPORTANT: redirect (not rewrite) so pathname becomes /standby in the browser
   if (isCustomDomain && !isSystemPath && pathname !== "/standby") {
     const url = req.nextUrl.clone();
     url.pathname = "/standby";
-    return NextResponse.rewrite(url);
+    url.search = ""; // optional: keep it clean
+    return NextResponse.redirect(url, 307);
   }
 
   return NextResponse.next();
