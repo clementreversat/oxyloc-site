@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import "./css/style.css";
 import Script from "next/script";
-import { Suspense } from "react";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
-import CookieBanner from "@/components/cookie-banner";
-import AnalyticsLoader from "@/components/analytics-loader";
+import SiteShell from "./SiteShell";
 
 export const metadata: Metadata = {
   title: "Oxyloc",
@@ -20,15 +16,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <Header />
-        {children}
-        <Footer />
-        <CookieBanner />
-
-        {/* Analytics loader - only loads after user consent */}
-        <Suspense fallback={null}>
-          <AnalyticsLoader />
-        </Suspense>
+        <SiteShell>{children}</SiteShell>
 
         <Script id="contact-delegate" strategy="afterInteractive">
           {`
